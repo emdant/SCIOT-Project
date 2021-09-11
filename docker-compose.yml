@@ -2,12 +2,12 @@ services:
   rabbitmq:
     image: emdant/rabbitmq
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - 5672:5672
+      - 15672:15672
   nuclio:
     image: quay.io/nuclio/dashboard:stable-amd64
     ports:
-      - "8070:8070"
+      - 8070:8070
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp
@@ -15,7 +15,7 @@ services:
     image: mongo
     restart: always
     volumes: 
-      - ~/mongo:/data/db
+      - /home/marco/mongo:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -30,3 +30,11 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+networks:
+  default:
+    ipam: 
+      config:
+        - subnet: "192.168.0.0/24"
+          gateway: "192.168.0.1"
+    

@@ -1,0 +1,36 @@
+metadata:
+  name: scan-person
+  labels:
+    nuclio.io/project-name: sciot-project
+spec:
+  handler: "main:handler"
+  runtime: nodejs
+  resources: {}
+  triggers:
+    ScannerTrigger:
+      class: ""
+      kind: rabbit-mq
+      name: ScannerTrigger
+      url: "amqp://guest:guest@192.168.0.1:5672"
+      attributes:
+        exchangeName: iot/scanners
+        topics:
+          - person
+    default-http:
+      class: ""
+      kind: http
+      name: default-http
+      maxWorkers: 1
+  build:
+    functionSourceCode: ZXhwb3J0cy5oYW5kbGVyID0gZnVuY3Rpb24oY29udGV4dCwgZXZlbnQpIHsNCiAgICBsZXQgZGF0YVN0cmluZyA9IGV2ZW50LmJvZHkudG9TdHJpbmcoKTsNCiAgICBsZXQgcGVyc29uRGF0YSA9IEpTT04ucGFyc2UoZGF0YVN0cmluZyk7DQogICAgY29udGV4dC5sb2dnZXIuaW5mbyhwZXJzb25EYXRhLmZpc2NhbGNvZGUpOw0KDQogICAgY29udGV4dC5jYWxsYmFjaygnQWRkZWQgZGF0YSAnICsgZGF0YVN0cmluZyk7DQp9Ow==
+    commands:
+      - 'npm install amqplib'
+    runtimeAttributes:
+      repositories: []
+    codeEntryType: sourceCode
+    timestamp: 1631381358
+  loggerSinks:
+    - level: debug
+  platform: {}
+  securityContext: {}
+  eventTimeout: ""

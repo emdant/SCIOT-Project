@@ -1,0 +1,47 @@
+{
+  "buildings": [
+    {
+      "name": "F2",
+      "rooms": [
+        "Aula F1",
+        "Aula F2",
+        "Aula F3",
+        "Aula F4",
+        "Aula F5",
+        "Aula F6",
+        "Aula F7",
+        "Aula F8",
+        "Laboratorio Hopper",
+        "Laboratorio Sammet",
+        "Laboratorio Ada",
+        "Laboratorio L11"
+      ]
+    },
+    {
+      "name": "F3",
+      "rooms": [
+        "Aula P1",
+        "Aula P2",
+        "Aula P3",
+        "Aula P4",
+        "Aula P5",
+        "Aula P6",
+        "Aula P7",
+        "Aula P8",
+        "Aula P9",
+        "Aula P10",
+        "Aula P11",
+        "Laboratorio P12",
+        "Laboratorio P13",
+        "Aula P14",
+        "Aula P15",
+        "Aula P16",
+        "Aula P17",
+        "Aula P18",
+        "Aula P19",
+        "Aula P20",
+        "Aula P21"
+      ]
+    }
+  ]
+}
