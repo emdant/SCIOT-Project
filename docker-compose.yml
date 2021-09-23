@@ -1,7 +1,8 @@
 services:
   rabbitmq:
-    image: emdant/rabbitmq
+    image: emdant/rabbitmq:latest
     ports:
+      - 1883:1883
       - 5672:5672
       - 15672:15672
   nuclio:

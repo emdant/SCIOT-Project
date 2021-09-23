@@ -13,6 +13,6 @@
   "homepage": "https://github.com/emdant/SCIOT-Project#readme",
   "private": "true",
   "dependencies": {
-    "amqplib": "^0.8.0"
+    "async-mqtt": "^2.6.1"
   }
 }

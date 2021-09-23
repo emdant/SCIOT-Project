@@ -1,6 +1,6 @@
 # Overview
-AMQP client:
-- sends a fiscal code to the `iot/scanners` exchange, along with some information about the location of the (emulated) device, for example:
+MQTT client:
+- sends a fiscal code to the `iot/scanners/person` topic, along with some information about the location of the (emulated) device, for example:
   ```
     {
       "fiscalcode": "RSSMRA80A01F205X",
@@ -10,8 +10,9 @@ AMQP client:
     }
   ```
 
+
 Serverless Platform:
-- AMQP triggered function that will read data from the `iot/scanners` exchange with key `person` and will store these data into a database
+- MQTT triggered function subscribed to the `iot/scanners/person` topic, will receive people data and store it into a database
 - HTTP triggered function that will return a list of locations a person visited (via his fiscal code) in a specific day
   ```
   {
