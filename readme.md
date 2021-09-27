@@ -21,5 +21,6 @@ Serverless Platform:
   }
   ```
 
-HTTP Client:
-- makes requests about a specific person
+Telegram Bot:
+- richiedere le informazioni di posizione di una persona in una specifica data
+- richiedere le persone che hanno visitato un'aula in una specifica data

@@ -6,9 +6,9 @@
     "url": "git+https://github.com/emdant/SCIOT-Project.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node ./bot/dist/index.js",
-    "watch": "tsc-watch --onSuccess \"node ./bot/dist/index.js\""
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv front/public --no-clear --single"
   },
   "author": "emdant",
   "license": "MIT",
@@ -21,10 +21,19 @@
     "@types/node": "^16.9.6",
     "async-mqtt": "^2.6.1",
     "dotenv": "^10.0.0",
+    "sirv-cli": "^1.0.14",
     "telegraf": "^4.4.2",
     "typescript": "^4.4.3"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "rollup": "^2.57.0",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.43.0",
     "tsc-watch": "^4.5.0"
   }
 }
