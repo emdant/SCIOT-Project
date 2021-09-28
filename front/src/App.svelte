@@ -1,5 +1,6 @@
 <script>
 	import Navbar from './Navbar.svelte'
+	import Card from './Card.svelte'
 	let locations = [];
 	let fiscalcode = "";
 	let datetime = (new Date()).toISOString().split('T')[0];
@@ -18,15 +19,26 @@
 		});
 
 		const body = await response.json();
-		console.log(body);
+		locations = body.results;
 	}
+
+	function onKeyPress(e) {
+    if (e.charCode === 13) 
+			getLocations();
+  }
+	
 </script>
 
 <main>
 	<Navbar/>
-	<input type="text" maxlength=16 placeholder="Fiscal Code" bind:value={fiscalcode}>
-	<input type="date" maxlength=16 placeholder="Fiscal Code" bind:value={datetime}>
+	<input on:keypress={onKeyPress} type="text" maxlength=16 placeholder="Fiscal Code" bind:value={fiscalcode}>
+	<input on:keypress={onKeyPress} type="date" maxlength=16 placeholder="Fiscal Code" bind:value={datetime}>
 	<button on:click={getLocations}>Get Locations</button>
+	<content>
+		{#each locations as {building, room, datetime}}
+		<Card {building} {room} time={new Date(datetime).toLocaleTimeString()}/>
+		{/each}
+	</content>
 </main>
 
 <style>
@@ -58,6 +70,12 @@
 	button {
 		min-width: 140px;
     min-height: 40px;
+	}
+
+	content {
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
 	}
 
 	@media (min-width: 640px) {
