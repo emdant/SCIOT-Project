@@ -1,7 +1,7 @@
 metadata:
   name: scan-person
   labels:
-    nuclio.io/project-name: sciot-project
+    nuclio.io/project-name: simple-tracing
 spec:
   handler: "main:handler"
   runtime: nodejs

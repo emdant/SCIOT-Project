@@ -8,8 +8,9 @@ const client = mqtt.connect('mqtt://guest:guest@localhost:1883');
 
 client.on('connect', () => {
   setInterval(async () => {
-    await client.publish(topic, Buffer.from(JSON.stringify(randomData())), {qos: 2});
-    console.log('Sent message to topic');
+    const data = randomData();
+    await client.publish(topic, Buffer.from(JSON.stringify(data)), {qos: 2});
+    console.log(`Sent message to topic with fiscal code: ${data.fiscalcode}`);
   }, 4000);
 });
 
