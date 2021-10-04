@@ -4,7 +4,7 @@ const { buildings } = require('./places.json');
 
 const topic = 'iot/scanners/person'
 
-const client = mqtt.connect('mqtt://guest:guest@localhost:1883');
+const client = mqtt.connect('mqtt://guest:guest@192.168.0.1:1883');
 
 client.on('connect', () => {
   setInterval(async () => {

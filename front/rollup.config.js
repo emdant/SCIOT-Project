@@ -29,12 +29,12 @@ function serve() {
 }
 
 export default {
-	input: 'front/src/main.js',
+	input: 'src/main.js',
 	output: {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'front/public/build/bundle.js'
+		file: 'public/build/bundle.js'
 	},
 	plugins: [
 		svelte({

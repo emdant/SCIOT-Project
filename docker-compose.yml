@@ -5,13 +5,6 @@ services:
       - 1883:1883
       - 5672:5672
       - 15672:15672
-  nuclio:
-    image: quay.io/nuclio/dashboard:stable-amd64
-    ports:
-      - 8070:8070
-    volumes: 
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /tmp:/tmp
   mongo:
     image: mongo
     restart: always
@@ -34,6 +27,24 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+  nuclio:
+    image: emdant/nuclio:latest
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp:/tmp
+    depends_on:
+      - rabbitmq
+      - mongo
+  front:
+    image: emdant/front:latest
+    ports: 
+      - 5000:5000
+    depends_on:
+      - nuclio
+  simulation:
+    image: emdant/simulation:latest
+    depends_on:
+      - front
 
 networks:
   default:

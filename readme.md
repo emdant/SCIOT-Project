@@ -15,7 +15,7 @@ Data is sent in JSON format, and looks like this:
     }
   ```
 ### Nuclio
-The Nuclio platform is used as a serverless provider, and it will run two functions, located in the `serverless/` folder.
+The Nuclio platform is used as a serverless provider, and it will run two functions, located in the `nuclio/` folder.
 - `scan-person`, an MQTT triggered function subscribed to the `iot/scanners/person` topic, that will receive people data and store it into a noSQL database. The connection to the database is instantiated when the function context is initialized.
 - `get-person`, an HTTP triggered function that will return a list of locations a person visited in a specific day. The connection to the dadabase is manged as before.
 The folder contains the `.yaml` file that needs to be deployed on the Nuclio platform as well as the functions' code for an easier consultation.
@@ -24,13 +24,11 @@ The folder contains the `.yaml` file that needs to be deployed on the Nuclio pla
 This is a simple front-end written in __Svelte__ (not a front-end person, so forgive my horrors) made to consult the data in the database using the `get-person` function. There is not any type of authentication and all you need is the fiscal code and a date to gather some person's location. The folder for this component is the `front/` one.
 
 ## Running it all
-_Note: you need Docker and Node.js to run the project_
+_Note: you need Docker and docker-compose_
 
-Running the project is actually not that hard, in fact, docker-compose helps to make deployment easier.
-1. First of all run `docker-compose up -d`.
-2. Then you need to to import the functions `.yaml` into the Nuclio dashboard, which is available at `localhost:8070` if you have not changed the `docker-compose`.
-3. Run `npm run build` followed by `npm run start` to run the front-end
-4. To generate some data from the sensor run `node simulation/sensor.js`
+Running the project is actually not that hard, in fact, docker-compose helps to make deployment easier,
+you just have to run `docker-compose up -d` and all components will be executed on docker, with the simulation container sending data to the queue.
+You can look at the logs to check which fiscal codes have been added to the database. Then, you can open `localhost:5000` to get the location for each of those people.
 
 ## Notes
 The project configuration of course is not production-ready, there are many exposed secrets and the connection between components needs some improvement (use SSL/TLS for example). But I thought this was enough to prove that an infrastructure like this may prove useful in a real-world scenario.

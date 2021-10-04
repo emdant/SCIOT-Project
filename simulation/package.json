@@ -1,0 +1,21 @@
+{
+  "name": "simpletracing-simulation",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emdant/SCIOT-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emdant/SCIOT-Project/issues"
+  },
+  "homepage": "https://github.com/emdant/SCIOT-Project#readme",
+  "main": "sensor.js",
+  "scripts": {
+    "start": "node sensor.js"
+  },
+  "author": "emdant",
+  "license": "MIT",
+  "dependencies": {
+    "async-mqtt": "^2.6.1"
+  }
+}

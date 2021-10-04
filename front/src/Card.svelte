@@ -20,6 +20,7 @@
     border: 2px solid gray;
     border-radius: 10px;
     margin: 5px 10px;
+    padding: 0px 5px;
   }
 
   span {
