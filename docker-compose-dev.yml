@@ -1,0 +1,53 @@
+services:
+  rabbitmq:
+    image: emdant/rabbitmq:latest
+    ports:
+      - 1883:1883
+      - 5672:5672
+      - 15672:15672
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes: 
+      - /home/marco/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: tracing
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on: 
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+  nuclio:
+    image: nuclio/dashboard:stable-amd64 
+    ports:
+      - 8070:8070
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp:/tmp
+    depends_on:
+      - rabbitmq
+      - mongo
+  front:
+    image: emdant/front:latest
+    ports: 
+      - 5000:5000
+    depends_on:
+      - nuclio
+
+networks:
+  default:
+    ipam: 
+      config:
+        - subnet: "192.168.0.0/24"
+          gateway: "192.168.0.1"
+    

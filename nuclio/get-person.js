@@ -39,12 +39,16 @@ exports.handler = function(context, event) {
 
 };
 
-exports.initContext = function(context) {
+fexports.initContext = tryConnection;
+
+function tryConnection(context) {
     const client = new MongoClient(uri);
     client.connect((err, client) => {
-        if (err) 
-            console.log(err);
+        if (err) {
+            setTimeout((context) => tryConnection(context), 2000 * repeats);
+            repeats *= 2;
+        }
         else
             context.dbClient = client;
-    });   
-};
+    });
+}

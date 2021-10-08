@@ -7,11 +7,10 @@ const topic = 'iot/scanners/person'
 const client = mqtt.connect('mqtt://guest:guest@192.168.0.1:1883');
 
 client.on('connect', () => {
-  setInterval(async () => {
-    const data = randomData();
-    await client.publish(topic, Buffer.from(JSON.stringify(data)), {qos: 2});
-    console.log(`Sent message to topic with fiscal code: ${data.fiscalcode}`);
-  }, 4000);
+  setTimeout(async () => {
+    await send();
+    setInterval(send, 3000);
+  }, 15000);
 });
 
 process.on('SIGINT', async () => {
@@ -19,6 +18,12 @@ process.on('SIGINT', async () => {
   await client.end();
   process.exit();
 });
+
+async function send() {
+  const data = randomData();
+  await client.publish(topic, Buffer.from(JSON.stringify(data)), {qos: 2});
+  console.log(`Sent message to topic with fiscal code: ${data.fiscalcode}`);
+}
 
 function randomData() {
   let building = buildings[randomInt(buildings.length)]
