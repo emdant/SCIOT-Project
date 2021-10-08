@@ -10,7 +10,7 @@ client.on('connect', () => {
   setTimeout(async () => {
     await send();
     setInterval(send, 3000);
-  }, 15000);
+  }, 25000);
 });
 
 process.on('SIGINT', async () => {
