@@ -8,7 +8,7 @@
 	async function getLocations() {
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-
+		
 		const response = await fetch('http://localhost:32001', {
 			method: 'POST',
 			headers: headers,
@@ -18,8 +18,10 @@
 			})
 		});
 
-		const body = await response.json();
-		locations = body.results;
+		if (response.ok) {
+			const body = await response.json();
+			locations = body.results;
+		}
 	}
 
 	function onKeyPress(e) {
