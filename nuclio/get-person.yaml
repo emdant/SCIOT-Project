@@ -5,6 +5,9 @@ metadata:
 spec:
   handler: "main:handler"
   runtime: nodejs
+  platform:
+    attributes:
+      networks: simpletracing
   resources: {}
   triggers:
     get-person-http:
