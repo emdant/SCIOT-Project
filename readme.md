@@ -1,9 +1,9 @@
 # SimpleTracing
-SimpleTracing is a project built for the __Serverless Computing for IOT__ course. It is a simple infrastructure to trace people using IOT sensors, in an environment composed by rooms that are placed into buildings. 
+SimpleTracing is a project built for the __Serverless Computing for IOT__ course. It is a simple infrastructure to trace people using IoT sensors, in an environment composed by rooms that are placed into buildings. 
 ## Components
 ### MQTT client
-Located in the `simulation/` folder, this is the simulated iot sensor using the MQTT protocol to send people information to the `iot/scanners/person` topic.
-In a real environment, the iot device should store infomation about the building and room identifier and send these along with the people identifier (SSN for example)
+Located in the `simulation/` folder, this is the simulated IoT sensor using the MQTT protocol to send people information to the `iot/scanners/person` topic.
+In a real environment, the IoT device should store infomation about the building and room identifier and send these along with the people identifier (SSN for example)
 and of course the scansion's timestamp.
 Data is sent in JSON format, and looks like this: 
   ```
