@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const uri = 'mongodb://root:example@192.168.0.1:27017/'
+const uri = 'mongodb://root:example@172.17.0.1:27017/'
 let repeats = 1;
 
 exports.handler = function(context, event) {

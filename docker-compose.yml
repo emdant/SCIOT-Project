@@ -1,8 +1,7 @@
 services:
   rabbitmq:
     image: emdant/rabbitmq:latest
-    networks:
-      - simpletracing
+    network_mode: "bridge"
     ports:
       - 1883:1883
       - 5672:5672
@@ -10,8 +9,7 @@ services:
   
   mongo:
     image: mongo
-    networks:
-      - simpletracing
+    network_mode: "bridge"
     restart: always
     ports:
       - 27017:27017
@@ -24,8 +22,7 @@ services:
 
   mongo-express:
     image: mongo-express
-    networks:
-      - simpletracing
+    network_mode: "bridge"
     restart: always
     depends_on: 
       - mongo
@@ -34,12 +31,11 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@172.17.0.1:27017/
   
   nuclio:
     image: emdant/nuclio:latest
-    networks:
-      - simpletracing
+    network_mode: "bridge"
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp
@@ -49,8 +45,7 @@ services:
   
   front:
     image: emdant/front:latest
-    networks:
-      - simpletracing
+    network_mode: "bridge"
     ports: 
       - 5000:5000
     depends_on:
@@ -58,15 +53,12 @@ services:
   
   simulation:
     image: emdant/simulation:latest
-    networks:
-      - simpletracing
+    network_mode: "bridge"
     depends_on:
       - front
 
 networks:
-  simpletracing:
-    ipam: 
-      config:
-        - subnet: "192.168.0.0/24"
-          gateway: "192.168.0.1"
+  default:
+    external:
+      name: bridge
     
