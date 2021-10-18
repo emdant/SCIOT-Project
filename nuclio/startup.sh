@@ -1,3 +1,4 @@
 #!/bin/sh
-./nuctl deploy --path ./scan
+sleep 5s
 ./nuctl deploy --path ./get 
+./nuctl deploy --path ./scan

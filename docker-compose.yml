@@ -56,9 +56,3 @@ services:
     network_mode: "bridge"
     depends_on:
       - front
-
-networks:
-  default:
-    external:
-      name: bridge
-    

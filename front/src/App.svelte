@@ -9,7 +9,7 @@
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		
-		const response = await fetch('http://172.17.0.1:32001', {
+		const response = await fetch('http://localhost:32001', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify({

@@ -24,7 +24,7 @@ The folder contains the `.yaml` file that needs to be deployed on the Nuclio pla
 This is a simple front-end written in __Svelte__ (not a front-end person, so forgive my horrors) made to consult the data in the database using the `get-person` function. There is not any type of authentication and all you need is the fiscal code and a date to gather some person's location. The folder for this component is the `front/` one.
 
 ## Running it all
-_Note: you need Docker and docker-compose_
+_Note: you need Docker and docker-compose also, because of some nuclio limitations, the default gateway of the docker bridge network must be 172.17.0.1._
 
 Running the project is actually not that hard, in fact, docker-compose helps to make deployment easier,
 you just have to run `docker-compose up -d` and all components will be executed on docker, with the simulation container sending data to the queue.
